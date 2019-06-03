@@ -242,7 +242,8 @@ function! EasyMotion#JK(visualmode, direction) " {{{
         call s:EasyMotion('^\(\w\|\s*\zs\|$\)', a:direction, a:visualmode ? visualmode() : '', 0)
     else
         let vcol  = EasyMotion#helper#vcol('.')
-        let pattern = printf('^.\{-}\zs\(\%%<%dv.\%%>%dv\|$\)', vcol + 1, vcol)
+        "let pattern = printf('^.\{-}\zs\(\%%<%dv.\%%>%dv\|$\)', vcol + 1, vcol)
+        let pattern = printf('^.\{-}\zs\(\%%<%dv[^ ]\%%>%dv\)', vcol + 1, vcol)
         call s:EasyMotion(pattern, a:direction, a:visualmode ? visualmode() : '', 0)
     endif
     return s:EasyMotion_is_cancelled
